@@ -764,6 +764,8 @@ void imparte() {
 void ingesoImparte(){
 	char respuesta;
 	int index = 0;
+	int indexCurso = 0;
+	int indexIng = 0;
 	do{
 		cin.ignore();
 		system("cls");
@@ -773,13 +775,43 @@ void ingesoImparte(){
 		getline(cin, imparte.curso);
 		cout << "Ingrese el correo del catedrático \t";
 		getline(cin, imparte.catedratico);
-		arrImparte.push_back(imparte);
-		int size = arrImparte.size();
-		arrImparte[size - 1].id = size; 
-		system("cls");
-		cout << "¿Desea agergar otro registro? (S/N) \t";
-		cin >> respuesta;
+		
+		indexCurso = getIndex(imparte.curso, 1, 0);
+		indexIng = getIndex(imparte.catedratico, 2, 0);
+		
+		if(indexCurso < 0) {
+			respuesta = 'n';
+		}
+		
+		if(indexIng < 0) {
+			respuesta = 'n';
+		}
+		
+		if(indexCurso >= 0 && indexIng >= 0) {
+			arrImparte.push_back(imparte);
+			int size = arrImparte.size();
+			arrImparte[size - 1].id = size; 
+			system("cls");
+			cout << "¿Desea agergar otro registro? (S/N) \t";
+			cin >> respuesta;
+		}
+		
 	} while (toupper(respuesta) == 'S');
+	
+	if(indexCurso < 0) {
+		system("cls");
+		cout << "****************** ERROR ******************* \n";
+		cout << "Debe de crear el curso antes de asignarlo \n";
+		getch();
+	}
+		
+	if(indexIng < 0) {
+		system("cls");
+		cout << "****************** ERROR ******************* \n";
+		cout << "Debe de crear el catedrático antes de asignarlo \n";
+		getch();
+	}
+	
 	system("cls");
 	imparte();
 }
