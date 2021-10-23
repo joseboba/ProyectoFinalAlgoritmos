@@ -63,40 +63,30 @@ void opcionesIngreso();
 // Curso
 void curso();
 void ingresoCurso();
-void editarCurso();
-void eliminarCurso(); 
 void buscarCurso();
 void listarCurso();
 
 //Catedráctico
 void catedratico();
 void ingresoCatedratico();
-void editarCatedratico();
-void eliminarCatedratico(); 
 void buscarCatedratico();
 void listarCatedratico();
 
 //Alumno
 void alumno();
 void ingresoAlumno();
-void editarAlumno();
-void eliminarAlumno(); 
 void buscarAlumno();
 void listarAlumno();
 
 //Asignaciones
 void imparte();
 void ingesoImparte();
-void editarImparte();
-void eliminarImparte();
 void buscarImparte();
 void listarImparte();
 
 //Notas 
 void nota();
 void ingresoNota();
-void editarNota();
-void eliminarNota();
 void buscarNota();
 void listarNota();
 
@@ -213,11 +203,9 @@ void menuReportes() {
 void opcionesIngreso() {
 		cout << "OPCIONES DE INGRESO" << endl;
 		cout << "1. Agregar" << endl;
-    	cout << "2. Editar" << endl;
-    	cout << "3. Eliminar" << endl;
-        cout << "4. Buscar" << endl;
-        cout << "5. Listar" << endl;
-        cout << "6. Regresar" << endl;
+        cout << "2. Buscar" << endl;
+        cout << "3. Listar" << endl;
+        cout << "4. Regresar" << endl;
         cout << "Seleccione una opción \t";
 }
 
@@ -231,18 +219,12 @@ void curso() {
 			ingresoCurso();
 			break;
 		case 2:
-			editarCurso();
-			break;
-		case 3:
-			eliminarCurso();
-			break;
-		case 4:
 			buscarCurso();
 			break;
-		case 5:
+		case 3:
 			listarCurso();
 			break;
-		case 6:
+		case 4:
 			menuIngreso();
 			break;
 	}
@@ -311,7 +293,6 @@ int getIndex(string codigo, int type, int id) {
 	
 	return index;
 }
-
 void buscarCurso() {
 	int index = 0;
 	char opt;
@@ -356,68 +337,6 @@ void listarCurso() {
 	system("cls");
 	curso();
 }
-void eliminarCurso() {
-	int index = 0;
-	char opt;
-	
-		do{
-			cin.ignore();
-			system("cls");
-			string curso;
-			cout << "Ingrese el código del curso \t";
-			getline(cin, curso);
-			cout << "\n";
-			index = getIndex(curso, 1, 0);
-			if (index > -1) {
-				cout << "***** ELEMENTO A ELIMINAR ***** \n";
-				cout << "Código del curso \t";
-				cout << arrCurso[index].codigo << "\n";
-				cout << "Nombre del curso \t";
-				cout << arrCurso[index].nombre << "\n";
-				arrCurso.erase(arrCurso.begin() + index);
-			} else {
-				cout << "El elemento a eliminar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea eliminar otro curso? (S/N)" << "\t";
-			cin >> opt;
-		} while(toupper(opt) == 'S');
-		system("cls");
-		curso();	
-}
-void editarCurso() {
-	int index = 0;
-	char opt;
-	
-	
-		do {
-			cin.ignore();
-			system("cls");
-			string curso;
-			cout << "Ingrese el código del curso \t";
-			getline(cin, curso);
-			cout << "\n";
-			index = getIndex(curso, 1, 0);
-			if(index > -1) {
-				cout << "***** ELEMENTO A EDITAR ***** \n";
-				cout << "Código del curso \t";
-				cout << arrCurso[index].codigo << "\n";
-				cout << "Nombre del curso \t";
-				cout << arrCurso[index].nombre << "\n";
-				cout << "\n";
-				cout << "Ingrese el nombre del curso \t";
-				getline(cin, arrCurso[index].nombre);
-			} else {
-				cout << "Elemento a editar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea editar otro curso? (S/N)" << "\t";
-			cin >> opt;
-		}while (toupper(opt) == 'S');
-		system("cls");
-		curso();
-	
-}
 
 void catedratico() {
 	int opt;
@@ -428,18 +347,12 @@ void catedratico() {
 			ingresoCatedratico();
 			break;
 		case 2:
-			editarCatedratico();
-			break;
-		case 3:
-			eliminarCatedratico();
-			break;
-		case 4:
 			buscarCatedratico(); 
 			break;
-		case 5:
+		case 3:
 			listarCatedratico();
 			break;
-		case 6:
+		case 4:
 			menuIngreso();
 			break;
 	}
@@ -462,67 +375,7 @@ char respuesta;
 	} while (toupper(respuesta) == 'S');
 	system("cls");
 	catedratico();
-	}
-void editarCatedratico(){
-	int index = 0;
-	char opt;
-	
-	
-		do {
-			cin.ignore();
-			system("cls");
-			string correo;
-			cout << "Ingrese el correo del cátedratico \t";
-			getline(cin, correo);
-			cout << "\n";
-			index = getIndex(correo, 2, 0);
-			if(index > -1) {
-				cout << "***** ELEMENTO A EDITAR ***** \n";
-				cout << "Correo del catedrático \t";
-				cout << arrCatedratico[index].correo << "\n";
-				cout << "Nombre del catedrático \t";
-				cout << arrCatedratico[index].nombre << "\n";
-				cout << "\n";
-				cout << "Ingrese el nombre del catedrático \t";
-				getline(cin, arrCatedratico[index].nombre);
-			} else {
-				cout << "Elemento a editar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea editar otro catedrático? (S/N)" << "\t";
-			cin >> opt;
-		}while (toupper(opt) == 'S');
-		system("cls");
-		catedratico();
-}
-void eliminarCatedratico(){
-	int index = 0;
-	char opt;
-		do{
-			cin.ignore();
-			system("cls");
-			string correo;
-			cout << "Ingrese el correo del catedrático \t";
-			getline(cin, correo);
-			cout << "\n";
-			index = getIndex(correo, 2, 0);
-			if (index > -1) {
-				cout << "***** ELEMENTO A ELIMINAR ***** \n";
-				cout << "Correo del catedrático \t";
-				cout << arrCatedratico[index].correo << "\n";
-				cout << "Nombre del catedrático \t";
-				cout << arrCatedratico[index].nombre << "\n";
-				arrCatedratico.erase(arrCatedratico.begin() + index);
-			} else {
-				cout << "El elemento a eliminar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea eliminar otro catedrático? (S/N)" << "\t";
-			cin >> opt;
-		} while(toupper(opt) == 'S');
-		system("cls");
-		catedratico();	
-} 
+	} 
 void buscarCatedratico(){
 	int index = 0;
 	char opt;
@@ -576,18 +429,12 @@ void alumno() {
 			ingresoAlumno();
 			break;
 		case 2:
-			editarAlumno();
-			break;
-		case 3:
-			eliminarAlumno();
-			break;
-		case 4:
 			buscarAlumno(); 
 			break;
-		case 5:
+		case 3:
 			listarAlumno();
 			break;
-		case 6:
+		case 4:
 			menuIngreso();
 			break;
 	}
@@ -615,75 +462,7 @@ char respuesta;
 	system("cls");
 	alumno();
 }
-void editarAlumno(){
-	int index = 0;
-	char opt;
-		do {
-			cin.ignore();
-			system("cls");
-			string carnet;
-			cout << "Ingrese el carnet del alumno \t";
-			getline(cin, carnet);
-			cout << "\n";
-			index = getIndex(carnet, 3, 0);
-			if(index > -1) {
-				cout << "***** ELEMENTO A EDITAR ***** \n";
-				cout << "Carnet del alumno \t";
-				cout << arrAlumno[index].carne << "\n";
-				cout << "Correo del alumno \t";
-				cout << arrAlumno[index].correo << "\n";
-				cout << "Nombre del alumno \t";
-				cout << arrAlumno[index].nombre << "\n";
-				cout << "Apellido del alumno \t";
-				cout << arrAlumno[index].apellido << "\n";
-				cout << "\n";
-				cout << "Ingrese el nombre del alumno \t";
-				getline(cin, arrAlumno[index].nombre);
-				cout << "Ingrese el apellido del alumno \t";
-				getline(cin, arrAlumno[index].apellido);
-			} else {
-				cout << "Elemento a editar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea editar otro alumno? (S/N)" << "\t";
-			cin >> opt;
-		}while (toupper(opt) == 'S');
-		system("cls");
-		alumno();
-}
-void eliminarAlumno(){
-	int index = 0;
-	char opt;
-		do{
-			cin.ignore();
-			system("cls");
-			string carnet;
-			cout << "Ingrese el carnet del alumno \t";
-			getline(cin, carnet);
-			cout << "\n";
-			index = getIndex(carnet, 3, 0);
-			if (index > -1) {
-				cout << "***** ELEMENTO A ELIMINAR ***** \n";
-				cout << "Carnet del alumno \t";
-				cout << arrAlumno[index].carne << "\n";
-				cout << "Correo del alumno \t";
-				cout << arrAlumno[index].correo << "\n";
-				cout << "Nombre del alumno \t";
-				cout << arrAlumno[index].nombre << "\n";
-				cout << "Apellido del alumno \t";
-				cout << arrAlumno[index].apellido << "\n";
-				cout << "\n";
-				arrAlumno.erase(arrAlumno.begin() + index);
-			} else {
-				cout << "El elemento a eliminar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea eliminar otro alumno? (S/N)" << "\t";
-			cin >> opt;
-		} while(toupper(opt) == 'S');
-		system("cls");
-		alumno();	
-} 
+
 void buscarAlumno(){
 	int index = 0;
 	char opt;
@@ -745,18 +524,12 @@ void imparte() {
 			ingesoImparte();
 			break;
 		case 2:
-			editarImparte();
-			break;
-		case 3:
-			eliminarImparte();
-			break;
-		case 4:
 			buscarImparte(); 
 			break;
-		case 5:
+		case 3:
 			listarImparte();
 			break;
-		case 6:
+		case 4:
 			menuIngreso();
 			break;
 	}
@@ -815,71 +588,7 @@ void ingesoImparte(){
 	system("cls");
 	imparte();
 }
-void editarImparte(){
-	int index = 0;
-	char opt;
-		do {
-			system("cls");
-			int id;
-			cout << "Ingrese el id de la asignacion \t";
-			cin >> id;
-			cout << "\n";
-			index = getIndex("", 4, id);
-			if(index > -1) {
-				cin.ignore();
-				cout << "***** ELEMENTO A EDITAR ***** \n";
-				cout << "Código \t";
-				cout << arrImparte[index].id << "\n";
-				cout << "Código del curso \t";
-				cout << arrImparte[index].curso << "\n";
-				cout << "Correo del catedrático \t";
-				cout << arrImparte[index].catedratico << "\n";
-				cout << "\n";
-				cout << "Ingrese el código del curso \t";
-				getline(cin, arrImparte[index].curso);
-				cout << "Ingrese el correo del cátedratico \t";
-				getline(cin, arrImparte[index].catedratico);
-			} else {
-				cout << "Elemento a editar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea editar otra asignacion? (S/N)" << "\t";
-			cin >> opt;
-		}while (toupper(opt) == 'S');
-		system("cls");
-		imparte();
-}
-void eliminarImparte(){
-	int index = 0;
-	char opt;
-		do{
-			cin.ignore();
-			system("cls");
-			int id;
-			cout << "Ingrese el id de la asignación \t";
-			cin >> id;
-			cout << "\n";
-			index = getIndex("", 4, id);
-			if (index > -1) {
-				cout << "***** ELEMENTO A ELIMINAR ***** \n";
-				cout << "Código \t";
-				cout << arrImparte[index].id << "\n";
-				cout << "Código del curso \t";
-				cout << arrImparte[index].curso << "\n";
-				cout << "Correo del catedrático \t";
-				cout << arrImparte[index].catedratico << "\n";
-				cout << "\n";
-				arrImparte.erase(arrImparte.begin() + index);
-			} else {
-				cout << "El elemento a eliminar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea eliminar otra asignacion? (S/N)" << "\t";
-			cin >> opt;
-		} while(toupper(opt) == 'S');
-		system("cls");
-		imparte();
-}
+
 void buscarImparte(){
 	int index = 0;
 	char opt;
@@ -937,18 +646,12 @@ void nota() {
 			ingresoNota();
 			break;
 		case 2:
-			editarNota();
-			break;
-		case 3:
-			eliminarNota();
-			break;
-		case 4:
 			buscarNota(); 
 			break;
-		case 5:
+		case 3:
 			listarNota();
 			break;
-		case 6:
+		case 4:
 			menuIngreso();
 			break;
 	}
@@ -1010,101 +713,7 @@ void ingresoNota(){
 	system("cls");
 	nota();
 }
-void editarNota(){
-	int index = 0;
-	char opt;
-		do {
-			system("cls");
-			int id;
-			cout << "Ingrese el id de la nota \t";
-			cin >> id;
-			cout << "\n";
-			index = getIndex("", 5, id);
-			if(index > -1) {
-				cin.ignore();
-				cout << "***** ELEMENTO A EDITAR ***** \n";
-				cout << "Código \t";
-				cout << arrNota[index].id << "\n";
-				cout << "Código del curso \t";
-				cout << arrNota[index].carne << "\n";
-				cout << "Carnet del estudiante \t";
-				cout << arrNota[index].carne << "\n";
-				cout << "Código del curso \t";
-				cout << arrNota[index].curso << "\n";
-				cout << "Nota Parcial 1 \t";
-				cout << arrNota[index].test1 << "\n";
-				cout << "Nota Parcial 2 \t";
-				cout << arrNota[index].test2 << "\n";
-				cout << "Nota Zona Trabajos \t";
-				cout << arrNota[index].zona << "\n";
-				arrNota[index].retrasada = (arrNota[index].test1 + arrNota[index].test2 + arrNota[index].zona) / 3;
-				cout << "\n";
-				
-				
-				cout << "Ingrese el carnet del alumno \t";
-				getline(cin, arrNota[index].carne);
-				cout << "Ingrese el código del curso \t";
-				getline(cin, arrNota[index].curso);
-				cout << "Ingrese la nota del primer parcial \t";
-				cin >> arrNota[index].test1;
-				cout << "Ingrese la nota del segundo parcial \t";
-				cin >> arrNota[index].test2;
-				cout << "Ingrese la nota de las tareas entregadas \t";
-				cin >> arrNota[index].zona;
-				cout << "Ingrese el promedio de la nota \t";
-				cin >> arrNota[index].retrasada;
-				
-			} else {
-				cout << "Elemento a editar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea editar otra nota? (S/N)" << "\t";
-			cin >> opt;
-		}while (toupper(opt) == 'S');
-		system("cls");
-		nota();
-}
-void eliminarNota(){
-	int index = 0;
-	char opt;
-		do{
-			cin.ignore();
-			system("cls");
-			int id;
-			cout << "Ingrese el id de la asignación \t";
-			cin >> id;
-			cout << "\n";
-			index = getIndex("", 5, id);
-			if (index > -1) {
-				cout << "***** ELEMENTO A ELIMINAR ***** \n";
-				cout << "Código \t";
-				cout << arrNota[index].id << "\n";
-				cout << "Código del curso \t";
-				cout << arrNota[index].carne << "\n";
-				cout << "Carnet del estudiante \t";
-				cout << arrNota[index].carne << "\n";
-				cout << "Código del curso \t";
-				cout << arrNota[index].curso << "\n";
-				cout << "Nota Parcial 1 \t";
-				cout << arrNota[index].test1 << "\n";
-				cout << "Nota Parcial 2 \t";
-				cout << arrNota[index].test2 << "\n";
-				cout << "Nota Zona Trabajos \t";
-				cout << arrNota[index].zona << "\n";
-				cout << "Promedio \t";
-				cout << arrNota[index].retrasada << "\n";
-				cout << "\n";
-				arrNota.erase(arrNota.begin() + index);
-			} else {
-				cout << "El elemento a eliminar no fue encontrado \n";
-			}
-			cout << "\n";
-			cout << "¿Desea eliminar otra nota? (S/N)" << "\t";
-			cin >> opt;
-		} while(toupper(opt) == 'S');
-		system("cls");
-		nota();
-}
+
 void buscarNota(){
 	int index = 0;
 	char opt;
